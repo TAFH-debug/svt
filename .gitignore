@@ -1,0 +1,6 @@
+# Dev Env config folder
+.idea
+.vscode
+
+# Virtual Environment files
+.venv
