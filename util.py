@@ -12,14 +12,13 @@ def remove_all_special_chars(text):
     return clean
 
 
-FILENAME = "words.csv"
-def get_recs(s) -> list[str]:
-    mn = 10000000
+FILENAME = "words_part1.csv"
+def get_recs(s: str) -> list[str]:
     rc = []
     with open(FILENAME, "r", newline="", encoding="utf-8") as file:
         reader = csv.reader(file)
         for word in reader:
-            d = distance.edit_distance(word[0], s)
+            d = distance.edit_distance(word[0].lower(), s.lower())
             rc.append((d, word[0]))
     rc.sort()
     return rc[:10]
