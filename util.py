@@ -12,7 +12,7 @@ def remove_all_special_chars(text):
     return clean
 
 
-FILENAME = "words_part1.csv"
+FILENAME = "database.csv"
 def get_recs(s: str) -> list[str]:
     rc = []
     with open(FILENAME, "r", newline="", encoding="utf-8") as file:
@@ -22,3 +22,15 @@ def get_recs(s: str) -> list[str]:
             rc.append((d, word[0]))
     rc.sort()
     return rc[:10]
+
+def add_to_db(filename: str):
+    all_words = []
+    with open(filename, "r", encoding="utf-8") as f:
+        reader = csv.reader(f)
+        for words in reader:
+            for word in words:
+                all_words.append(word)
+    
+    with open(FILENAME, "a", encoding="utf-8") as f:
+        for word in all_words:
+            f.write(word + "\n")
